@@ -1,0 +1,207 @@
+* {
+  font-feature-settings: "palt";
+}
+
+/* バウンススクロール時のカラースタイル */
+/* body::before,
+body::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 50%;
+    position: fixed;
+    left: 0;
+    z-index: -1;
+}
+body::before {
+    top: 0;
+    background-color: lightgreen;
+}
+body::after {
+    bottom: 0;
+    background-color: lightgray;
+} */
+
+input[type="number"] {
+  -moz-appearance:textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body, #app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* bottom: 0; */
+  color: #224;
+}
+
+#app {
+  padding-bottom: 24px;
+}
+
+#app.danger {
+  background-color: #fc9;
+}
+
+.danger hr {
+  border-color: orangered;
+}
+
+main, header, footer {
+  max-width: calc(425px - 48px);
+  margin: auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+header, footer {
+  margin-bottom: 24px;
+}
+
+header {
+  margin-top: 48px;
+}
+
+hr {
+  border-style: solid;
+  width: calc(100%);
+  border-width: 0px;
+  border-top-width: 1px;
+  border-color: lightgray;
+  margin: 48px auto;
+}
+
+.description {
+  /* word-break: keep-all; */
+  margin-top: 24px;
+}
+
+h2 + .description, h3 + .description {
+  margin-top: 0px;
+}
+
+/* h2 + h3 {
+  margin-bottom: 0;
+} */
+
+.price-field-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.option {
+  flex: 1;
+  margin: 24px 0;
+  user-select: none;
+  text-align: center;
+  line-height: 48px;
+  /* color: #224; */
+  background-color: lightgrey;
+  border-radius: 24px;
+  /* box-shadow: 0px 5px 5px rgba( 200, 200, 200, 0.5); */
+}
+
+.option-button-container > .option {
+  margin-top: 0;
+}
+
+.description + .option {
+  margin-top: 24px;
+}
+
+.option.enable {
+  background-color: greenyellow;
+  /* box-shadow: 0px 0px 2px rgba( 100, 255, 100, 0.5); */
+}
+
+.danger-zone {
+  /* background-color: lightsalmon; */
+  border-color: orangered;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 0 24px;
+  margin: 24px 0;
+}
+
+.option.enable.danger {
+  background-color: orangered;
+  font-weight: bold;
+  color: white;
+  /* box-shadow: 0px 0px 2px rgba( 255, 100, 100, 0.9); */
+}
+
+.max-price {
+  line-height: 48px;
+  margin: 24px 0;
+  text-align: center;
+  font-size: xx-large;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+  border-radius: 8px;
+}
+
+.max-price:focus {
+  outline: 0;
+  border-color: greenyellow;
+}
+
+.max-price:out-of-range {
+  outline: 0;
+  border-color: red;
+  background-color: lightcoral
+}
+
+.over-range {
+  color: red;
+  margin-bottom: 24px;
+}
+
+.submit {
+  flex: 1;
+  margin: 24px 0;
+  user-select: none;
+  text-align: center;
+  line-height: 48px;
+  /* color: #224; */
+  background-color: lightcoral;
+  border-radius: 24px;
+  /* box-shadow: 0px 0px 2px rgba(255, 124, 124, 0.5); */
+}
+
+.submit.disable {
+  background-color: gray;
+}
+
+.result-list {
+  margin: 48px 0;
+}
+
+.result-list .row {
+  display: flex;
+  margin-top: 12px;
+}
+
+.result-list div {
+  margin: auto;
+}
+
+.result-list .name {
+  max-width: 70%;
+}
+
+.result-list .price {
+  min-width: 3rem;
+}
+.result-list hr {
+  flex: 1;
+  min-width: 5%;
+  margin: auto 24px;
+}

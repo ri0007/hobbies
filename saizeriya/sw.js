@@ -3,7 +3,7 @@ const CACHE_NAME = 'cache-v1'
 
 //キャッシュに入れるリソースのパス
 const urlsToCache = [
-  '/',
+  '/hobbies/saizeriya/',
   'manifest.json',
   'main.css'
 ]

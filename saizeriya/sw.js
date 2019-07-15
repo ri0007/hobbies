@@ -1,11 +1,12 @@
 //キャッシュ名
-const CACHE_NAME = 'cache-v1'
+const CACHE_NAME = 'cache-v2'
 
 //キャッシュに入れるリソースのパス
 const urlsToCache = [
   '/hobbies/saizeriya/',
   'manifest.json',
-  'main.css'
+  'main.css',
+  'icon.png'
 ]
 
 //インストール状態のイベント処理

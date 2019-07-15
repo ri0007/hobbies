@@ -2,9 +2,15 @@
   "short_name": "サイゼリヤガチャ",
   "name": "サイゼリヤガチャ",
   "start_url": "https://ri0007.github.io/hobbies/saizeriya/",
-  "display": "standalone"
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#fff",
   "lang": "ja-JP",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
 }

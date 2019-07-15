@@ -5,6 +5,7 @@ const CACHE_NAME = 'cache-v1'
 const urlsToCache = [
   '/',
   'manifest.json',
+  'main.css'
 ]
 
 //インストール状態のイベント処理

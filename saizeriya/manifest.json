@@ -3,4 +3,8 @@
   "name": "サイゼリヤガチャ",
   "start_url": "https://ri0007.github.io/hobbies/saizeriya/",
   "display": "standalone"
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "lang": "ja-JP",
 }

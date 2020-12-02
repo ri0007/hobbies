@@ -29,18 +29,34 @@
         </div>
       </header>
       <main>
+        <div v-show="!isShowOptions">
+          <hr />
+          <h2>お酒設定</h2>
+          現在の設定値<br />
+          (ボタンを押して変更)
+          <div
+            v-bind:class='(noOptionValues["noAlcohol"])? "option enable" : "option warning"'
+            v-on:click='noOptionValues["noAlcohol"] = !noOptionValues["noAlcohol"]; oneOptionValues["oneAlcohol"] = !noOptionValues["noAlcohol"];'
+          >
+            {{ noOptionsDisplayNames['noAlcohol'] +
+            ((noOptionValues["noAlcohol"])? "はガチャから除外" :
+            "は1杯だけ出す") }}
+          </div>
+          <hr />
+        </div>
         <div
           class="option"
           v-on:click="isShowOptions = !isShowOptions"
           v-show="!isShowOptions"
         >
-          オプションを表示する
+          その他のオプションを表示する
         </div>
         <div class="option-button-container" v-show="isShowOptions">
           <hr />
           <h2>1品確定オプション</h2>
           <div class="description">
-            対象のメニューの中から先に1品をランダム選択し、選ばれなかったメニューはガチャから除外されます
+            対象のメニューの中からあらかじめ1品を抽選し、
+            選ばれなかったメニューはガチャから除外されます
           </div>
           <div
             v-for="(value, name) in oneOptionValues"
@@ -53,7 +69,8 @@
           <hr />
           <h2>ガチャ除外オプション</h2>
           <div class="description">
-            対象のメニューをガチャから除きます (1品確定オプションは優先されます)
+            対象のメニューをガチャから除きます<br />
+            (1品確定オプションは優先されます)
           </div>
           <div
             v-for="(value, name) in noOptionValues"
@@ -67,7 +84,7 @@
           <h2>その他オプション</h2>
           <h3>前菜のみ</h3>
           <div class="description">
-            ガチャから前菜メニューのみ排出されます
+            ガチャから前菜メニューのみ排出されます<br />
             (1品確定オプションは優先されます)
           </div>
           <div
@@ -89,7 +106,7 @@
             <div v-show="isShowDangerOptions">
               <h3>重複許可</h3>
               <div class="description">
-                ガチャで重複が発生するようになります
+                ガチャで重複が発生するようになります<br />
                 (同じメニューが複数回選ばれる可能性があります)
               </div>
               <div
@@ -100,7 +117,7 @@
               </div>
               <h3>デカンタ類とグラッパ追加</h3>
               <div class="description">
-                ガチャでデカンタ類とグラッパが排出されるようになります
+                ガチャでデカンタ類とグラッパが排出されるようになります<br />
                 (ランダム選択除外でアルコールを除外している場合、このオプションは無視されます)
               </div>
               <div
@@ -126,7 +143,7 @@
         <div class="price-field-container">
           <h2>金額設定</h2>
           <div class="description">
-            ガチャで選ばれるメニューの上限金額を入力してください
+            ガチャで選ばれるメニューの上限金額を入力してください<br />
             {{(isShowOptions)? "(1品確定オプションは優先されます)" : "" }}
           </div>
           <input
@@ -312,7 +329,7 @@
 
     // キーと表示名の対応
     const oneOptionsDisplayNames = {
-      oneAlcohol: "アルコール",
+      oneAlcohol: "お酒",
       oneSalad: "サラダ",
       oneDoria: "ドリア＆グラタン",
       onePizza: "ピザ",
@@ -322,7 +339,7 @@
       oneDolce: "デザート",
     };
     const noOptionsDisplayNames = {
-      noAlcohol: "アルコール",
+      noAlcohol: "お酒",
       noSalad: "サラダ",
       noDoria: "ドリア＆グラタン",
       noPizza: "ピザ",
@@ -399,6 +416,10 @@
         isShowOptions: false,
         isShowDangerOptions: false,
         allResults: allResults,
+      },
+      created: function () {
+        noOptionValues["noAlcohol"] = true;
+        oneOptionValues["oneAlcohol"] = !noOptionValues["noAlcohol"];
       },
       computed: {
         maxPrice: function () {

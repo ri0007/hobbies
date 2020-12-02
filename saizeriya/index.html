@@ -42,7 +42,6 @@
             ((noOptionValues["noAlcohol"])? "はガチャから除外" :
             "は1杯だけ出す") }}
           </div>
-          <hr />
         </div>
         <div
           class="option"
@@ -51,6 +50,8 @@
         >
           その他のオプションを表示する
         </div>
+        <hr v-show="!isShowOptions" />
+
         <div class="option-button-container" v-show="isShowOptions">
           <hr />
           <h2>1品確定オプション</h2>

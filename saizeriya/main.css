@@ -33,9 +33,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 body {
-  font-family: "Avenir", "Helvetica Neue", "Helvetica", "Arial", "Hiragino Sans",
-    "ヒラギノ角ゴシック", YuGothic, "Yu Gothic", "メイリオ", Meiryo,
-    "ＭＳ Ｐゴシック", "MS PGothic";
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans",
+    "ヒラギノ角ゴ Pro W3", "HIragino Kaku Gothic Pro W3",
+    "HIragino Kaku Gothic Pro", Meryo, "メイリオ", Osaka, "ＭＳ Ｐゴシック",
+    "MS P Gothic", sans-serif;
 }
 
 body,

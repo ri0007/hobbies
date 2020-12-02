@@ -1,467 +1,492 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>サイゼリヤガチャ</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <meta name="description" content="みんなで楽しくイタリアンを楽しむためのガチャ">
-  <meta name="robots" content="noindex,nofollow">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
-  <link rel="manifest" href="manifest.json">
-  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-</head>
-<body>
-  <div id="app" :class="(isWarning)? 'danger' : ''">
-    <header>
-      <h1>
-        サイゼリヤガチャ
-      </h1>
-      <div class="description">
-        {{ (isWarning)? '最後の晩餐にならないようお気を付けて' : 'みんなで楽しくイタリアン' }}
-      </div>
-    </header>
-    <main>
-      <div
-        class="option"
-        v-on:click='isShowOptions = !isShowOptions'
-        v-show="!isShowOptions"
-      >
-        オプションを表示する
-      </div>
-      <div class="option-button-container" v-show="isShowOptions">
-        <hr>
-        <h2>
-          1品確定オプション
-        </h2>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>サイ○リヤガチャ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="みんなで楽しくイタリアンを楽しむためのガチャ"
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <div id="app" :class="(isWarning)? 'danger' : ''">
+      <header>
+        <h1>サイ○リヤガチャ</h1>
         <div class="description">
-          対象のメニューの中から先に1品をランダム選択し、選ばれなかったメニューはガチャから除外されます
+          {{ (isWarning)? '最後の晩餐にならないようお気を付けて' :
+          'みんなで楽しくイタリアン' }}
         </div>
+      </header>
+      <main>
         <div
-          v-for="(value, name) in oneOptionValues"
-          v-bind:class="(value)? 'option enable' : 'option'"
-          v-on:click='oneOptionValues[name] = !value'
+          class="option"
+          v-on:click="isShowOptions = !isShowOptions"
+          v-show="!isShowOptions"
         >
-          {{ oneOptionsDisplayNames[name] + ((value)?  "は1品確定" : "はガチャで選ぶ") }}
+          オプションを表示する
         </div>
-        <hr>
-        <h2>
-          ガチャ除外オプション
-        </h2>
-        <div class="description">
-          対象のメニューをガチャから除きます
-          (1品確定オプションは優先されます)
-        </div>
-        <div
-          v-for="(value, name) in noOptionValues"
-          v-bind:class="(value)? 'option enable' : 'option'"
-          v-on:click='noOptionValues[name] = !value'
-        >
-          {{ noOptionsDisplayNames[name] + ((value)? "はガチャから除外" : "はガチャで選ぶ") }}
-        </div>
-        <hr>
-        <h2>
-          その他オプション
-        </h2>
-        <h3>
-          前菜のみ
-        </h3>
-        <div class="description">
-          ガチャから前菜メニューのみ排出されます
-          (1品確定オプションは優先されます)
-        </div>
-        <div
-          v-bind:class="(isOnlyAppetizer)? 'option enable' : 'option'"
-          v-on:click='isOnlyAppetizer = !isOnlyAppetizer'
-        >
-          {{ ((isOnlyAppetizer)? "ON" : "OFF") }}
-        </div>
-        <hr>
-        <div class="danger-zone">
-          <h2>
-            Danger Zone
-          </h2>
+        <div class="option-button-container" v-show="isShowOptions">
+          <hr />
+          <h2>1品確定オプション</h2>
+          <div class="description">
+            対象のメニューの中から先に1品をランダム選択し、選ばれなかったメニューはガチャから除外されます
+          </div>
           <div
-            class="option"
-            v-on:click='isShowDangerOptions = !isShowDangerOptions'
-            v-show="!isShowDangerOptions"
+            v-for="(value, name) in oneOptionValues"
+            v-bind:class="(value)? 'option enable' : 'option'"
+            v-on:click="oneOptionValues[name] = !value"
           >
-            非推奨オプションを表示する
+            {{ oneOptionsDisplayNames[name] + ((value)? "は1品確定" :
+            "はガチャで選ぶ") }}
           </div>
-          <div  v-show="isShowDangerOptions">
-            <h3>
-              重複許可
-            </h3>
-            <div class="description">
-              ガチャで重複が発生するようになります
-              (同じメニューが複数回選ばれる可能性があります)
-            </div>
+          <hr />
+          <h2>ガチャ除外オプション</h2>
+          <div class="description">
+            対象のメニューをガチャから除きます (1品確定オプションは優先されます)
+          </div>
+          <div
+            v-for="(value, name) in noOptionValues"
+            v-bind:class="(value)? 'option enable' : 'option'"
+            v-on:click="noOptionValues[name] = !value"
+          >
+            {{ noOptionsDisplayNames[name] + ((value)? "はガチャから除外" :
+            "はガチャで選ぶ") }}
+          </div>
+          <hr />
+          <h2>その他オプション</h2>
+          <h3>前菜のみ</h3>
+          <div class="description">
+            ガチャから前菜メニューのみ排出されます
+            (1品確定オプションは優先されます)
+          </div>
+          <div
+            v-bind:class="(isOnlyAppetizer)? 'option enable' : 'option'"
+            v-on:click="isOnlyAppetizer = !isOnlyAppetizer"
+          >
+            {{ ((isOnlyAppetizer)? "ON" : "OFF") }}
+          </div>
+          <hr />
+          <div class="danger-zone">
+            <h2>Danger Zone</h2>
             <div
-              v-bind:class="(isAllowDuplicate)? 'option enable danger' : 'option'"
-              v-on:click='isAllowDuplicate = !isAllowDuplicate'
+              class="option"
+              v-on:click="isShowDangerOptions = !isShowDangerOptions"
+              v-show="!isShowDangerOptions"
             >
-              {{ ((isAllowDuplicate)? "ON" : "OFF") }}
+              非推奨オプションを表示する
             </div>
-            <h3>
-              デカンタ類とグラッパ追加
-            </h3>
-            <div class="description">
-              ガチャでデカンタ類とグラッパが排出されるようになります
-              (ランダム選択除外でアルコールを除外している場合、このオプションは無視されます)
-            </div>
-            <div
-              v-bind:class="(isUnlimited)? 'option enable danger' : 'option'"
-              v-on:click='isUnlimited = !isUnlimited'
-            >
-              {{ ((isUnlimited)? "ON" : "OFF") }}
-            </div>
-            <h3>
-              ハルマゲドンモード
-            </h3>
-            <div class="description">
-              「デカンタ類とグラッパ追加」オプションの効果に加えて、さらにデカンタ類かグラッパを先に1品ランダム選択します
-            </div>
-            <div
-              v-bind:class="(isArmageddon)? 'option enable danger' : 'option'"
-              v-on:click='isArmageddon = !isArmageddon'
-            >
-              {{ ((isArmageddon)? "ON" : "OFF") }}
+            <div v-show="isShowDangerOptions">
+              <h3>重複許可</h3>
+              <div class="description">
+                ガチャで重複が発生するようになります
+                (同じメニューが複数回選ばれる可能性があります)
+              </div>
+              <div
+                v-bind:class="(isAllowDuplicate)? 'option enable danger' : 'option'"
+                v-on:click="isAllowDuplicate = !isAllowDuplicate"
+              >
+                {{ ((isAllowDuplicate)? "ON" : "OFF") }}
+              </div>
+              <h3>デカンタ類とグラッパ追加</h3>
+              <div class="description">
+                ガチャでデカンタ類とグラッパが排出されるようになります
+                (ランダム選択除外でアルコールを除外している場合、このオプションは無視されます)
+              </div>
+              <div
+                v-bind:class="(isUnlimited)? 'option enable danger' : 'option'"
+                v-on:click="isUnlimited = !isUnlimited"
+              >
+                {{ ((isUnlimited)? "ON" : "OFF") }}
+              </div>
+              <h3>ハルマゲドンモード</h3>
+              <div class="description">
+                「デカンタ類とグラッパ追加」オプションの効果に加えて、さらにデカンタ類かグラッパを先に1品ランダム選択します
+              </div>
+              <div
+                v-bind:class="(isArmageddon)? 'option enable danger' : 'option'"
+                v-on:click="isArmageddon = !isArmageddon"
+              >
+                {{ ((isArmageddon)? "ON" : "OFF") }}
+              </div>
             </div>
           </div>
+          <hr />
         </div>
-        <hr>
-      </div>
-      <div class="price-field-container">
-        <h2>
-          金額設定
-        </h2>
-        <div class="description">
-          ガチャで選ばれるメニューの上限金額を入力してください
-          {{(isShowOptions)? "(1品確定オプションは優先されます)" : "" }}
-        </div>
-        <input class="max-price" type="number" v-model='inputPrice' step="100" min='0' max='5000' placeholder='0 ~ 5000'>
-      </div>
-      <div class="over-range" v-show='isOverMaxPriceRange'>
-        上限は5000円までです
-      </div>
-      <div v-show='isShowResult'>
-        <hr>
-        <div class="results-container">
-          <h2>
-            ガチャリザルト
-          </h2>
-          <div class="result-list" v-for="(resultObj, index) in allResults" :key="index">
-            <h3 v-show='isShowCountLabel'>
-              {{ index + 1 }}回目
-            </h3>
-            <div v-for="(menu, index) in resultObj.menus" :key="index" class="row">
-              <div class="name">{{ menu.name }}</div>
-              <hr>
-              <!-- <div class="line"></div> -->
-              <div class="price">{{ menu.price }}円</div>
-            </div>
+        <div class="price-field-container">
+          <h2>金額設定</h2>
+          <div class="description">
+            ガチャで選ばれるメニューの上限金額を入力してください
+            {{(isShowOptions)? "(1品確定オプションは優先されます)" : "" }}
           </div>
-          <h2>
-            合計 : {{ allResultPrice }}円
-          </h2>
+          <input
+            class="max-price"
+            type="number"
+            v-model="inputPrice"
+            step="100"
+            min="0"
+            max="5000"
+            placeholder="0 ~ 5000"
+          />
         </div>
-        <hr>
-      </div>
-      <div class="submit" v-on:click='submit' v-show='!isOverMaxPriceRange'>
+        <div class="over-range" v-show="isOverMaxPriceRange">
+          上限は5000円までです
+        </div>
+        <div v-show="isShowResult">
+          <hr />
+          <div class="results-container">
+            <h2>ガチャリザルト</h2>
+            <div
+              class="result-list"
+              v-for="(resultObj, index) in allResults"
+              :key="index"
+            >
+              <h3 v-show="isShowCountLabel">{{ index + 1 }}回目</h3>
+              <div
+                v-for="(menu, index) in resultObj.menus"
+                :key="index"
+                class="row"
+              >
+                <div class="name">{{ menu.name }}</div>
+                <hr />
+                <!-- <div class="line"></div> -->
+                <div class="price">{{ menu.price }}円</div>
+              </div>
+            </div>
+            <h2>合計 : {{ allResultPrice }}円</h2>
+          </div>
+          <hr />
+        </div>
+        <div class="submit" v-on:click="submit" v-show="!isOverMaxPriceRange">
           {{ (isShowResult)? "追加で" : "" }}{{maxPrice}}円ガチャを回す
-      </div>
-    </main>
-    <footer>
-      <div>
-        <small>
-          このサイトは個人的に作られた非公式ウェブサイトです
-        </small>
-      </div>
-      <div>
-        <small>
-          Developed by <a href="https://github.com/ri0007" target="_blank">@ri0007</a>
-        </small>
-      </div>
-    </footer>
-  </div>
-</body>
-<script>
-  navigator.serviceWorker.register('/hobbies/saizeriya/sw.js')
+        </div>
+      </main>
+      <footer>
+        <div>
+          <small> このサイトは個人的に作られた非公式ウェブサイトです </small>
+        </div>
+        <div>
+          <small>
+            Developed by
+            <a href="https://github.com/ri0007" target="_blank">@ri0007</a>
+          </small>
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script>
+    navigator.serviceWorker.register("/hobbies/saizeriya/sw.js");
 
-  const alcohols = [
-    { name: 'グラスワイン 赤',  price: 100 },
-    { name: 'グラスワイン 白',  price: 100 },
-    { name: 'キリン一番搾り ジョッキ',  price: 399 },
-    { name: 'キリン一番搾り グラス',  price: 299 },
-    { name: 'ストロングゼロ',  price: 379 }
-  ]
+    const alcohols = [
+      { name: "グラスワイン 赤", price: 100 },
+      { name: "グラスワイン 白", price: 100 },
+      { name: "キリン一番搾り ジョッキ", price: 399 },
+      { name: "キリン一番搾り グラス", price: 299 },
+      { name: "ストロングゼロ", price: 379 },
+    ];
 
-  const dolces = [
-    { name: 'カプチーノ(アイスケーキ)',  price: 199 },
-    { name: 'プリントカプチーノの盛り合わせ',  price: 399 },
-    { name: 'プリントティラミスの盛り合わせ',  price: 399 },
-    { name: 'ティラミス(アイスケーキ)',  price: 199 },
-    { name: 'イタリアンプリン',  price: 249 },
-    { name: 'シナモンフォッカチオ',  price: 169 },
-    { name: 'ミルクアイスのせシナモンフォッカチオ',  price: 319 },
-    { name: 'コーヒーゼリー',  price: 299 },
-    { name: 'トリフアイスクリーム',  price: 369 },
-    { name: 'ミルクジェラート',  price: 199 },
-    { name: 'シチリア産レモンのソルベ',  price: 199 },
-    { name: 'チョコレートケーキ',  price: 299 },
-    { name: 'セットドリンクバー',  price: 190 }
-  ]
+    const dolces = [
+      { name: "カプチーノ(アイスケーキ)", price: 199 },
+      { name: "プリントカプチーノの盛り合わせ", price: 399 },
+      { name: "プリントティラミスの盛り合わせ", price: 399 },
+      { name: "ティラミス(アイスケーキ)", price: 199 },
+      { name: "イタリアンプリン", price: 249 },
+      { name: "シナモンフォッカチオ", price: 169 },
+      { name: "ミルクアイスのせシナモンフォッカチオ", price: 319 },
+      { name: "コーヒーゼリー", price: 299 },
+      { name: "トリフアイスクリーム", price: 369 },
+      { name: "ミルクジェラート", price: 199 },
+      { name: "シチリア産レモンのソルベ", price: 199 },
+      { name: "チョコレートケーキ", price: 299 },
+      { name: "セットドリンクバー", price: 190 },
+    ];
 
-  const dorias = [
-    { name: 'ミラノ風ドリア', price: 299 },
-    { name: '半熟卵のミラノ風ドリア', price: 368 },
-    { name: 'セットプチフォッカ付きミラノ風ドリア', price: 378 },
-    { name: 'いろどり野菜のミラノ風ドリア', price: 399 },
-    { name: 'エビとイカのドリア', price: 499 },
-    { name: 'ほうれん草のグラタン', price: 399 },
-    { name: 'シーフードグラタン', price: 499 }
-  ]
+    const dorias = [
+      { name: "ミラノ風ドリア", price: 299 },
+      { name: "半熟卵のミラノ風ドリア", price: 368 },
+      { name: "セットプチフォッカ付きミラノ風ドリア", price: 378 },
+      { name: "いろどり野菜のミラノ風ドリア", price: 399 },
+      { name: "エビとイカのドリア", price: 499 },
+      { name: "ほうれん草のグラタン", price: 399 },
+      { name: "シーフードグラタン", price: 499 },
+    ];
 
-  const meets = [
-    { name: 'ミックスグリル',  price: 599 },
-    { name: 'ハンバーグステーキ',  price: 399 },
-    { name: '野菜ソースのハンバーグステーキ',  price: 499 },
-    { name: 'デミグラスソースのハンバーグ',  price: 499 },
-    { name: 'イタリアンハンバーグ',  price: 499 },
-    { name: '焼肉とハンバーグの盛合せ',  price: 599 },
-    { name: '若鶏のグリル',  price: 499 },
-    { name: '柔らかチキンのチーズ焼き',  price: 499 },
-    { name: 'パンチェッタと若鶏のグリル',  price: 599 },
-    { name: 'リブステーキ',  price: 999 }
-  ]
+    const meets = [
+      { name: "ミックスグリル", price: 599 },
+      { name: "ハンバーグステーキ", price: 399 },
+      { name: "野菜ソースのハンバーグステーキ", price: 499 },
+      { name: "デミグラスソースのハンバーグ", price: 499 },
+      { name: "イタリアンハンバーグ", price: 499 },
+      { name: "焼肉とハンバーグの盛合せ", price: 599 },
+      { name: "若鶏のグリル", price: 499 },
+      { name: "柔らかチキンのチーズ焼き", price: 499 },
+      { name: "パンチェッタと若鶏のグリル", price: 599 },
+      { name: "リブステーキ", price: 999 },
+    ];
 
-  const pastas = [
-    { name: 'アーリオ・オーリオ', price: 299 },
-    { name: 'ミートソースボロニア風', price: 399 },
-    { name: '半熟卵のミートソースボロニア風', price: 468 },
-    { name: 'タラコソースシシリー風', price: 399 },
-    { name: 'キャベツのペペロンチーノ', price: 399 },
-    { name: 'アラビアータ', price: 399 },
-    { name: 'スープ入りトマト味ボンゴレ', price: 499 },
-    { name: 'パルマ風スパゲッティ', price: 399 },
-    { name: 'アスパラガスとエビのクリームスパゲッティ', price: 499 },
-    { name: 'カルボナーラ', price: 499 },
-    { name: 'イカの墨入りスパゲッティ', price: 499 }
-  ]
+    const pastas = [
+      { name: "アーリオ・オーリオ", price: 299 },
+      { name: "ミートソースボロニア風", price: 399 },
+      { name: "半熟卵のミートソースボロニア風", price: 468 },
+      { name: "タラコソースシシリー風", price: 399 },
+      { name: "キャベツのペペロンチーノ", price: 399 },
+      { name: "アラビアータ", price: 399 },
+      { name: "スープ入りトマト味ボンゴレ", price: 499 },
+      { name: "パルマ風スパゲッティ", price: 399 },
+      { name: "アスパラガスとエビのクリームスパゲッティ", price: 499 },
+      { name: "カルボナーラ", price: 499 },
+      { name: "イカの墨入りスパゲッティ", price: 499 },
+    ];
 
-  const pizzas = [
-    { name: 'バッファローモッツァレラのピザ', price: 499 },
-    { name: 'パンチェッタのピザ', price: 399 },
-    { name: 'マルゲリータピザ', price: 399 },
-    { name: '野菜ときのこのピザ', price: 399 },
-    { name: 'ミラノサラミのピザ', price: 499 },
-    { name: 'やわらかイカとアンチョビのピザ', price: 499 }
-  ]
+    const pizzas = [
+      { name: "バッファローモッツァレラのピザ", price: 499 },
+      { name: "パンチェッタのピザ", price: 399 },
+      { name: "マルゲリータピザ", price: 399 },
+      { name: "野菜ときのこのピザ", price: 399 },
+      { name: "ミラノサラミのピザ", price: 499 },
+      { name: "やわらかイカとアンチョビのピザ", price: 499 },
+    ];
 
-  const rices = [
-    { name: 'シーフードパエリア',  price: 599 },
-    { name: 'エビと野菜のトマトクリームリゾット',  price: 399 },
-    { name: 'ハヤシ＆ターメリックライス',  price: 499 },
-    { name: '半熟卵のハヤシ＆ターメリックライス',  price: 568 }
-  ]
+    const rices = [
+      { name: "シーフードパエリア", price: 599 },
+      { name: "エビと野菜のトマトクリームリゾット", price: 399 },
+      { name: "ハヤシ＆ターメリックライス", price: 499 },
+      { name: "半熟卵のハヤシ＆ターメリックライス", price: 568 },
+    ];
 
-  const salad = [
-    { name: '小エビのサラダ', price: 349 },
-    { name: 'やわらかチキンのサラダ', price: 299 },
-    { name: 'イタリアンサラダ', price: 299 },
-    { name: 'わかめサラダ', price: 299 },
-    { name: 'シーフードサラダ', price: 599 },
-    { name: '半熟卵とポークのサラダ', price: 599 },
-  ]
+    const salad = [
+      { name: "小エビのサラダ", price: 349 },
+      { name: "やわらかチキンのサラダ", price: 299 },
+      { name: "イタリアンサラダ", price: 299 },
+      { name: "わかめサラダ", price: 299 },
+      { name: "シーフードサラダ", price: 599 },
+      { name: "半熟卵とポークのサラダ", price: 599 },
+    ];
 
-  const appetizers = [
-    { name: 'コーンクリームスープ', price: 149 },
-    { name: '辛味チキン', price: 299 },
-    { name: 'アスパラガスのオーブン焼き', price: 299 },
-    { name: 'ポップコーンシュリンプ', price: 299 },
-    { name: 'エスカルゴのオーブン焼き', price: 399 },
-    { name: 'セットプチフォッカ', price: 79 },
-    { name: 'ムール貝のガーリック焼き', price: 399 },
-    { name: '野菜ソースのグリルソーセージ', price: 399 },
-    { name: 'チョリソー', price: 399 },
-    { name: '柔らか青豆の温サラダ', price: 199 },
-    { name: '削りたてペコリーノチーズ', price: 100 },
-    { name: 'セロリのピクルス', price: 199 },
-    { name: '真イカのパプリカソース', price: 199 },
-    { name: 'ほうれんそうのソテー', price: 199 },
-    { name: 'キャベツのアンチョビソーテー', price: 199 },
-    { name: 'ポテトのグリル', price: 199 },
-    { name: 'ガーリックトースト', price: 189 },
-    { name: 'ミニフィセル', price: 169 },
-    { name: 'フォッカチオ', price: 119 },
-    { name: 'プチフォッカ', price: 139 },
-    { name: '熟成ミラノサラミ', price: 299 },
-    { name: '熟成ミラノサラミWサイズ', price: 598 },
-    { name: 'フレッシュチーズとトマトのサラダ', price: 299 },
-    { name: 'フレッシュチーズとトマトのサラダW', price: 598 },
-    { name: 'プロシュート', price: 399 },
-    { name: 'プロシュートW', price: 798 }
-  ]
+    const appetizers = [
+      { name: "コーンクリームスープ", price: 149 },
+      { name: "辛味チキン", price: 299 },
+      { name: "アスパラガスのオーブン焼き", price: 299 },
+      { name: "ポップコーンシュリンプ", price: 299 },
+      { name: "エスカルゴのオーブン焼き", price: 399 },
+      { name: "セットプチフォッカ", price: 79 },
+      { name: "ムール貝のガーリック焼き", price: 399 },
+      { name: "野菜ソースのグリルソーセージ", price: 399 },
+      { name: "チョリソー", price: 399 },
+      { name: "柔らか青豆の温サラダ", price: 199 },
+      { name: "削りたてペコリーノチーズ", price: 100 },
+      { name: "セロリのピクルス", price: 199 },
+      { name: "真イカのパプリカソース", price: 199 },
+      { name: "ほうれんそうのソテー", price: 199 },
+      { name: "キャベツのアンチョビソーテー", price: 199 },
+      { name: "ポテトのグリル", price: 199 },
+      { name: "ガーリックトースト", price: 189 },
+      { name: "ミニフィセル", price: 169 },
+      { name: "フォッカチオ", price: 119 },
+      { name: "プチフォッカ", price: 139 },
+      { name: "熟成ミラノサラミ", price: 299 },
+      { name: "熟成ミラノサラミWサイズ", price: 598 },
+      { name: "フレッシュチーズとトマトのサラダ", price: 299 },
+      { name: "フレッシュチーズとトマトのサラダW", price: 598 },
+      { name: "プロシュート", price: 399 },
+      { name: "プロシュートW", price: 798 },
+    ];
 
-  const dangerousMenus = [
-    { name: 'デカンタ 250ml 赤',  price: 200 },
-    { name: 'デカンタ 250ml 白',  price: 200 },
-    { name: 'デカンタ 500ml 赤',  price: 399 },
-    { name: 'デカンタ 500ml 白',  price: 399 },
-    { name: 'グラッパ',  price: 379 }
-  ]
+    const dangerousMenus = [
+      { name: "デカンタ 250ml 赤", price: 200 },
+      { name: "デカンタ 250ml 白", price: 200 },
+      { name: "デカンタ 500ml 赤", price: 399 },
+      { name: "デカンタ 500ml 白", price: 399 },
+      { name: "グラッパ", price: 379 },
+    ];
 
-  // キーと表示名の対応
-  const oneOptionsDisplayNames = {
-    oneAlcohol: 'アルコール',
-    oneSalad: 'サラダ',
-    oneDoria: 'ドリア＆グラタン',
-    onePizza: 'ピザ',
-    onePasta: 'パスタ',
-    oneRice: 'ライス',
-    oneMeet: '肉料理',
-    oneDolce: 'デザート',
-  }
-  const noOptionsDisplayNames = {
-    noAlcohol: 'アルコール',
-    noSalad: 'サラダ',
-    noDoria: 'ドリア＆グラタン',
-    noPizza: 'ピザ',
-    noPasta: 'パスタ',
-    noRice: 'ライス',
-    noMeet: '肉料理',
-    noDolce: 'デザート',
-  }
+    // キーと表示名の対応
+    const oneOptionsDisplayNames = {
+      oneAlcohol: "アルコール",
+      oneSalad: "サラダ",
+      oneDoria: "ドリア＆グラタン",
+      onePizza: "ピザ",
+      onePasta: "パスタ",
+      oneRice: "ライス",
+      oneMeet: "肉料理",
+      oneDolce: "デザート",
+    };
+    const noOptionsDisplayNames = {
+      noAlcohol: "アルコール",
+      noSalad: "サラダ",
+      noDoria: "ドリア＆グラタン",
+      noPizza: "ピザ",
+      noPasta: "パスタ",
+      noRice: "ライス",
+      noMeet: "肉料理",
+      noDolce: "デザート",
+    };
 
-  // キーで示されるオプションが有効か否かのフラグを保持するオブジェクト
-  const initOptionValues = (memo, key) => {memo[key] = false; return memo}
-  const oneOptionValues = Object.keys(oneOptionsDisplayNames).reduce(initOptionValues, {})
-  const noOptionValues  = Object.keys(noOptionsDisplayNames).reduce(initOptionValues, {})
+    // キーで示されるオプションが有効か否かのフラグを保持するオブジェクト
+    const initOptionValues = (memo, key) => {
+      memo[key] = false;
+      return memo;
+    };
+    const oneOptionValues = Object.keys(oneOptionsDisplayNames).reduce(
+      initOptionValues,
+      {}
+    );
+    const noOptionValues = Object.keys(noOptionsDisplayNames).reduce(
+      initOptionValues,
+      {}
+    );
 
-  // オプションのキーの集合
-  const oneOptionKeys = Object.keys(oneOptionsDisplayNames).map(keyName => ({ keyName: keyName }))
-  const noOptionKeys = Object.keys(noOptionsDisplayNames).map(keyName => ({ keyName: keyName }))
+    // オプションのキーの集合
+    const oneOptionKeys = Object.keys(
+      oneOptionsDisplayNames
+    ).map((keyName) => ({ keyName: keyName }));
+    const noOptionKeys = Object.keys(noOptionsDisplayNames).map((keyName) => ({
+      keyName: keyName,
+    }));
 
-  const allResults = []
-  const resultObject = (resultMenus) => {
-    const total = resultMenus.reduce((memo, resultMenu) => {
-      return memo + resultMenu.price
-    }, 0)
-    return { menus: resultMenus, totalPrice: total }
-  }
+    const allResults = [];
+    const resultObject = (resultMenus) => {
+      const total = resultMenus.reduce((memo, resultMenu) => {
+        return memo + resultMenu.price;
+      }, 0);
+      return { menus: resultMenus, totalPrice: total };
+    };
 
-  const randomPop = (array) => {
-    const min = 0
-    const max = Math.floor(array.length)
-    const index = Math.floor(Math.random() * (max - min)) + min
-    obj = array.splice(index, 1)[0]
-    return obj
-  }
+    const randomPop = (array) => {
+      const min = 0;
+      const max = Math.floor(array.length);
+      const index = Math.floor(Math.random() * (max - min)) + min;
+      obj = array.splice(index, 1)[0];
+      return obj;
+    };
 
-  const cloneArray = (array) => Array.from(array)
-  const compactArray = (array) => array.filter((e) => { return e })
-  const removeWithIndex = (array, index) => {
-    array.splice(index, 1)
-    return array
-  }
+    const cloneArray = (array) => Array.from(array);
+    const compactArray = (array) =>
+      array.filter((e) => {
+        return e;
+      });
+    const removeWithIndex = (array, index) => {
+      array.splice(index, 1);
+      return array;
+    };
 
-  var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello Vue!',
-      oneOptionKeys: oneOptionKeys,
-      oneOptionsDisplayNames: oneOptionsDisplayNames,
-      oneOptionValues: oneOptionValues,
-      noOptionKeys: noOptionKeys,
-      noOptionsDisplayNames: noOptionsDisplayNames,
-      noOptionValues: noOptionValues,
-      inputPrice: '',
-      isOnlyAppetizer: false,
-      isAllowDuplicate: false,
-      isUnlimited: false,
-      isArmageddon: false,
-      isShowResult: false,
-      isShowOptions: false,
-      isShowDangerOptions: false,
-      allResults: allResults
-    },
-    computed: {
-      maxPrice: function() {
-        return (this.inputPrice === '')? 1000 : Number(this.inputPrice)
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "Hello Vue!",
+        oneOptionKeys: oneOptionKeys,
+        oneOptionsDisplayNames: oneOptionsDisplayNames,
+        oneOptionValues: oneOptionValues,
+        noOptionKeys: noOptionKeys,
+        noOptionsDisplayNames: noOptionsDisplayNames,
+        noOptionValues: noOptionValues,
+        inputPrice: "",
+        isOnlyAppetizer: false,
+        isAllowDuplicate: false,
+        isUnlimited: false,
+        isArmageddon: false,
+        isShowResult: false,
+        isShowOptions: false,
+        isShowDangerOptions: false,
+        allResults: allResults,
       },
-      allResultPrice: function() {
-        return this.allResults.reduce((memo, resultObj) => {
-          return memo + resultObj.totalPrice
-        }, 0)
+      computed: {
+        maxPrice: function () {
+          return this.inputPrice === "" ? 1000 : Number(this.inputPrice);
+        },
+        allResultPrice: function () {
+          return this.allResults.reduce((memo, resultObj) => {
+            return memo + resultObj.totalPrice;
+          }, 0);
+        },
+        isOverMaxPriceRange: function () {
+          return this.inputPrice > 5000;
+        },
+        isShowCountLabel: function () {
+          return this.allResults.length >= 2;
+        },
+        isWarning: function () {
+          return this.isAllowDuplicate || this.isUnlimited || this.isArmageddon;
+        },
       },
-      isOverMaxPriceRange: function(){
-        return this.inputPrice > 5000
-      },
-      isShowCountLabel: function() {
-        return this.allResults.length >= 2
-      },
-      isWarning: function() {
-        return this.isAllowDuplicate || this.isUnlimited || this.isArmageddon
-      }
-    },
-    methods: {
-      submit: function() {
-        _alcohols = cloneArray(alcohols)
-        _dolces = cloneArray(dolces)
-        _dorias = cloneArray(dorias)
-        _meets = cloneArray(meets)
-        _pastas = cloneArray(pastas)
-        _pizzas = cloneArray(pizzas)
-        _rices = cloneArray(rices)
-        _salad = cloneArray(salad)
-        _dangerousMenus = cloneArray(dangerousMenus)
+      methods: {
+        submit: function () {
+          _alcohols = cloneArray(alcohols);
+          _dolces = cloneArray(dolces);
+          _dorias = cloneArray(dorias);
+          _meets = cloneArray(meets);
+          _pastas = cloneArray(pastas);
+          _pizzas = cloneArray(pizzas);
+          _rices = cloneArray(rices);
+          _salad = cloneArray(salad);
+          _dangerousMenus = cloneArray(dangerousMenus);
 
-        seed = compactArray(
-          [
-            (this.oneOptionValues.oneAlcohol)? randomPop(_alcohols) : null,
-            (this.oneOptionValues.oneDolce)? randomPop(_dolces) : null,
-            (this.oneOptionValues.oneDoria)? randomPop(_dorias) : null,
-            (this.oneOptionValues.oneMeet)? randomPop(_meets) : null,
-            (this.oneOptionValues.onePasta)? randomPop(_pastas) : null,
-            (this.oneOptionValues.onePizza)? randomPop(_pizzas) : null,
-            (this.oneOptionValues.oneRice)? randomPop(_rices) : null,
-            (this.oneOptionValues.oneSalad)? randomPop(_salad) : null,
-            (this.isArmageddon)? randomPop(_dangerousMenus) : null,
-          ]
-        )
+          seed = compactArray([
+            this.oneOptionValues.oneAlcohol ? randomPop(_alcohols) : null,
+            this.oneOptionValues.oneDolce ? randomPop(_dolces) : null,
+            this.oneOptionValues.oneDoria ? randomPop(_dorias) : null,
+            this.oneOptionValues.oneMeet ? randomPop(_meets) : null,
+            this.oneOptionValues.onePasta ? randomPop(_pastas) : null,
+            this.oneOptionValues.onePizza ? randomPop(_pizzas) : null,
+            this.oneOptionValues.oneRice ? randomPop(_rices) : null,
+            this.oneOptionValues.oneSalad ? randomPop(_salad) : null,
+            this.isArmageddon ? randomPop(_dangerousMenus) : null,
+          ]);
 
-        menus = []
-        if(this.isUnlimited || this.isArmageddon) menus = menus.concat(_dangerousMenus)
-        if(!(this.oneOptionValues.oneAlcohol || this.noOptionValues.noAlcohol)) menus = menus.concat(_alcohols)
-        if(!(this.oneOptionValues.oneDolce || this.noOptionValues.noDolce)) menus = menus.concat(_dolces)
-        if(!(this.oneOptionValues.oneDoria || this.noOptionValues.noDoria)) menus = menus.concat(_dorias)
-        if(!(this.oneOptionValues.oneMeet || this.noOptionValues.noMeet)) menus = menus.concat(_meets)
-        if(!(this.oneOptionValues.onePasta || this.noOptionValues.noPasta)) menus = menus.concat(_pastas)
-        if(!(this.oneOptionValues.onePizza || this.noOptionValues.noPizza)) menus = menus.concat(_pizzas)
-        if(!(this.oneOptionValues.oneRice || this.noOptionValues.noRice)) menus = menus.concat(_rices)
-        if(!(this.oneOptionValues.oneSalad || this.noOptionValues.noSalad)) menus = menus.concat(_salad)
-        if(this.isOnlyAppetizer) menus = cloneArray(appetizers)
+          menus = [];
+          if (this.isUnlimited || this.isArmageddon)
+            menus = menus.concat(_dangerousMenus);
+          if (
+            !(this.oneOptionValues.oneAlcohol || this.noOptionValues.noAlcohol)
+          )
+            menus = menus.concat(_alcohols);
+          if (!(this.oneOptionValues.oneDolce || this.noOptionValues.noDolce))
+            menus = menus.concat(_dolces);
+          if (!(this.oneOptionValues.oneDoria || this.noOptionValues.noDoria))
+            menus = menus.concat(_dorias);
+          if (!(this.oneOptionValues.oneMeet || this.noOptionValues.noMeet))
+            menus = menus.concat(_meets);
+          if (!(this.oneOptionValues.onePasta || this.noOptionValues.noPasta))
+            menus = menus.concat(_pastas);
+          if (!(this.oneOptionValues.onePizza || this.noOptionValues.noPizza))
+            menus = menus.concat(_pizzas);
+          if (!(this.oneOptionValues.oneRice || this.noOptionValues.noRice))
+            menus = menus.concat(_rices);
+          if (!(this.oneOptionValues.oneSalad || this.noOptionValues.noSalad))
+            menus = menus.concat(_salad);
+          if (this.isOnlyAppetizer) menus = cloneArray(appetizers);
 
-        this.recursiveChoice(menus, seed)
-        this.isShowResult = true
+          this.recursiveChoice(menus, seed);
+          this.isShowResult = true;
+        },
+        recursiveChoice: function (menus, results = []) {
+          currentPrice = results.reduce((memo, menu) => {
+            return (memo += menu.price);
+          }, 0);
+          choiceMenu = randomPop(
+            menus.filter((menu) => menu.price < this.maxPrice - currentPrice)
+          );
+          if (typeof choiceMenu === "undefined") {
+            this.allResults.push(resultObject(results));
+            return;
+          }
+          choiceIndex = menus.indexOf(choiceMenu);
+          this.recursiveChoice(
+            this.isAllowDuplicate ? menus : removeWithIndex(menus, choiceIndex),
+            results.concat([choiceMenu])
+          );
+        },
       },
-      recursiveChoice: function(menus, results = []) {
-        currentPrice = results.reduce((memo, menu) => {
-          return memo += menu.price
-        }, 0)
-        choiceMenu = randomPop(menus.filter((menu) => menu.price < this.maxPrice - currentPrice))
-        if(typeof choiceMenu === 'undefined') {
-          this.allResults.push(resultObject(results))
-          return
-        }
-        choiceIndex = menus.indexOf(choiceMenu)
-        this.recursiveChoice(
-          (this.isAllowDuplicate)? menus : removeWithIndex(menus, choiceIndex),
-          results.concat([choiceMenu])
-        )
-      }
-    },
-  })
-</script>
+    });
+  </script>
 </html>
